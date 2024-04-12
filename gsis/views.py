@@ -73,7 +73,7 @@ def register_administrator(request):
             msg = 'User created successfully.'
             success = True
 
-            # return redirect("login/")
+            return redirect("login")
 
         else:
             msg = 'Form is not valid'
