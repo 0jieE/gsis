@@ -117,23 +117,23 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 class Administrator(models.Model):
     user = models.ForeignKey(User, related_name = 'administrator_user_id', on_delete = models.CASCADE)
-    contact_number = models.CharField(max_length=50)
+    contact_number = models.CharField(max_length=50, blank = True, null = True)
     picture = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None, null = True, blank = True)
     updated_on = models.DateField(auto_now_add = True)
 
 class Staff(models.Model):
     user = models.ForeignKey(User, related_name = 'staff_user_id', on_delete = models.CASCADE)
-    contact_number = models.CharField(max_length=50)
+    contact_number = models.CharField(max_length=50, blank = True, null = True)
     picture = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None, null = True, blank = True)
     updated_on = models.DateTimeField(auto_now_add=True)
 
 class Student(models.Model):
     user = models.ForeignKey(User, related_name = 'student_user_id', on_delete=models.CASCADE)
-    gender = models.CharField(max_length=50)
-    birth_date = models.DateField()
-    home_address = models.CharField(max_length=50)
-    email_address = models.CharField(max_length=50)
-    contact_number = models.CharField(max_length=50)
+    gender = models.CharField(max_length=50, blank = True, null = True)
+    birth_date = models.DateField(blank = True, null = True)
+    home_address = models.CharField(max_length=50, blank = True, null = True)
+    email_address = models.CharField(max_length=50, blank = True, null = True)
+    contact_number = models.CharField(max_length=50, blank = True, null = True)
     picture = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None, null = True, blank = True)
     update_on = models.DateField(auto_now_add = True)
 
