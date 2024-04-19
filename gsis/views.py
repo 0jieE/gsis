@@ -565,8 +565,8 @@ def save_class_schedule(request, form, template_name):
 
 
 def prospectus(request):
-        prospectuss = Prospectus.objects.all()
-        return render(request, 'administrator/prospectus/prospectus.html',{'prospectuss':prospectuss})
+        prospectus = Prospectus.objects.all()
+        return render(request, 'administrator/prospectus/prospectus.html',{'prospectus':prospectus})
 
 def add_prospectus(request):
         if(request.method == 'POST'):
@@ -592,8 +592,8 @@ def delete_prospectus(request,pk):
         if request.method == 'POST':
             prospectus.delete()
             data['form_is_valid'] = True
-            prospectuss= Prospectus.objects.all()
-            data['prospectus_list'] = render_to_string('administrator/prospectus/list_prospectus.html',{'prospectuss':prospectuss})
+            prospectus= Prospectus.objects.all()
+            data['prospectus_list'] = render_to_string('administrator/prospectus/list_prospectus.html',{'prospectus':prospectus})
         else:    
             context = {'prospectus':prospectus}
             data['html_form'] = render_to_string('administrator/prospectus/delete_prospectus.html',context,request=request)
@@ -605,8 +605,8 @@ def save_prospectus(request, form, template_name):
     if form.is_valid():
         form.save()
         data['form_is_valid'] = True
-        prospectuss= Prospectus.objects.all()
-        data['prospectus_list'] = render_to_string('administrator/prospectus/list_prospectus.html',{'prospectuss':prospectuss})
+        prospectus= Prospectus.objects.all()
+        data['prospectus_list'] = render_to_string('administrator/prospectus/list_prospectus.html',{'prospectus':prospectus})
     else:
         data['form_is_valid'] = False
 
@@ -654,7 +654,7 @@ def delete_course_prospectus(request,pk):
             data['course_prospectus_list'] = render_to_string('administrator/course_prospectus/list_course_prospectus.html',{'course_prospectus':course_prospectus})
         else:    
             context = {'course_prospectus':course_prospectus}
-            data['html_form'] = render_to_string('administrator/course_prospectus/delete_course_prospectus.html',context,request=request)
+            data['html_form'] = render_to_string('administrator/course_prospectus/delete_course_propectus.html',context,request=request)
         return JsonResponse(data)
 
 
@@ -664,7 +664,7 @@ def save_course_prospectus(request, form, template_name):
         form.save()
         data['form_is_valid'] = True
         course_prospectus= Course_Prospectus.objects.all()
-        data['course_prospectus_list'] = render_to_string('administrator/course_prospectus/list_course_prospectus.html',{'course_prospectus':course_prospectus})
+        data['course_prospectus_list'] = render_to_string('administrator/course_prospectus/list_course_propectus.html',{'course_prospectus':course_prospectus})
     else:
         data['form_is_valid'] = False
 
