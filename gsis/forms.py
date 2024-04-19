@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm, UsernameField, PasswordResetForm, SetPasswordForm
-from .models import User, Administrator_user, Staff_user, Student_user
+from .models import User, Administrator_user, Staff_user, Student_user, College, Department, Course, Enrollment, Room, Subject, Class_Schedule, Prospectus, Course_Prospectus
 from django.utils.translation import gettext_lazy as _
 
 
@@ -226,3 +226,48 @@ class UserPasswordChangeForm(PasswordChangeForm):
     new_password2 = forms.CharField(max_length=50, widget=forms.PasswordInput(attrs={
         'class': 'form-control', 'placeholder': 'Confirm New Password'
     }), label="Confirm New Password")
+
+class CollegeForm(forms.ModelForm):
+    class Meta:
+        model = College
+        fields = ['college_name','short_name']
+
+class DepartmentForm(forms.ModelForm):
+    class Meta:
+        model = Department
+        fields = ['department_name','short_name','college']
+
+class CourseForm(forms.ModelForm):
+    class Meta:
+        model = Course
+        fields = ['course_name','short_name','course_description','course_period','department']
+
+class EnrollmentForm(forms.ModelForm):
+    class Meta:
+        model = Enrollment
+        fields = ['enrollment_description','semester','school_year']
+
+class RoomForm(forms.ModelForm):
+    class Meta:
+        model = Room
+        fields = ['room_no','capacity','room_type','college']
+
+class SubjectForm(forms.ModelForm):
+    class Meta:
+        model = Subject
+        fields = ['code','descriptive_title','lecture_unit','laboratory_unit','credit_unit']
+
+class ClassScheduleForm(forms.ModelForm):
+    class Meta:
+        model = Class_Schedule
+        fields = ['enrollment','subject','room','year_level','schedule']
+
+class PropectuseForm(forms.ModelForm):
+    class Meta:
+        model = Prospectus
+        fields = ['prospectus_name','description']
+
+class CoursePropectuseform(forms.ModelForm):
+    class Meta:
+        model = Course_Prospectus
+        fields = ['prospectus','course','subject','pre_requisit1','pre_requisit2','pre_requisit3','pre_requisit4','pre_requisit5','semester','year_level']
