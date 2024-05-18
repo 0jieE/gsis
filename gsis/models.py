@@ -184,7 +184,7 @@ class Room(models.Model):
     college = models.ForeignKey(College, related_name = 'college_room', on_delete = models.CASCADE )
 
     def __str__(self):
-        template = '{0.room_no} {0.college} {0.last_name}'
+        template = '{0.room_no}'
         return template.format(self)
 
 class Subject(models.Model):
