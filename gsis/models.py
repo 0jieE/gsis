@@ -206,7 +206,7 @@ class Class_Schedule(models.Model):
     schedule = models.CharField(max_length=50)
 
     def __str__(self):
-        template = '{0.subject} {0.class_schedule}'
+        template = '{0.subject}'
         return template.format(self)
 
 class Prospectus(models.Model):
