@@ -143,10 +143,18 @@ class College(models.Model):
     college_name = models.CharField(max_length=50)
     short_name = models.CharField(max_length=50)
 
+    def __str__(self):
+        template = '{0.college_name}'
+        return template.format(self)
+
 class Department(models.Model):
     department_name = models.CharField(max_length=50)
     short_name = models.CharField(max_length=50)
     college = models.ForeignKey(College, related_name ='college_id', on_delete = models.CASCADE, null = True, blank = True)
+
+    def __str__(self):
+        template = '{0.department_name}'
+        return template.format(self)
 
 class Course(models.Model):
     course_name = models.CharField(max_length=50)
@@ -154,6 +162,9 @@ class Course(models.Model):
     course_description = models.CharField(max_length=50)
     course_period = models.IntegerField()
     department = models.ForeignKey(Department, related_name = 'course_department_name', on_delete = models.CASCADE)
+    def __str__(self):
+        template = '{0.course_name}'
+        return template.format(self)
 
 #Enrollment----------------------------------------------------------------------
     
@@ -162,11 +173,19 @@ class Enrollment(models.Model):
     semester = models.CharField(max_length=50)
     school_year = models.CharField(max_length=50)
 
+    def __str__(self):
+        template = '{0.semester} {0.school_year}'
+        return template.format(self)
+
 class Room(models.Model):
     room_no = models.CharField(max_length=50)
     capacity = models.CharField(max_length=50)
     room_type = models.CharField(max_length=50)
     college = models.ForeignKey(College, related_name = 'college_room', on_delete = models.CASCADE )
+
+    def __str__(self):
+        template = '{0.room_no} {0.college} {0.last_name}'
+        return template.format(self)
 
 class Subject(models.Model):
     code = models.CharField(max_length=50)
@@ -175,6 +194,10 @@ class Subject(models.Model):
     laboratory_unit = models.DecimalField(decimal_places = 2, max_digits = 4)
     credit_unit = models.DecimalField(decimal_places = 2, max_digits = 4)
 
+    def __str__(self):
+        template = '{0.code} {0.descriptive_title}'
+        return template.format(self)
+
 class Class_Schedule(models.Model):
     enrollment = models.ForeignKey(Enrollment, related_name = 'enrollment_class_schedule', on_delete = models.CASCADE)
     subject = models.ForeignKey(Subject, related_name = 'subject_class_schedule', on_delete = models.CASCADE)
@@ -182,9 +205,17 @@ class Class_Schedule(models.Model):
     year_level = models.CharField(max_length=50)
     schedule = models.CharField(max_length=50)
 
+    def __str__(self):
+        template = '{0.subject} {0.class_schedule}'
+        return template.format(self)
+
 class Prospectus(models.Model):
     prospectus_name = models.CharField(max_length=50)
     description = models.CharField(max_length=50)
+
+    def __str__(self):
+        template = '{0.prospectus_name}'
+        return template.format(self)
 
 
 class Course_Prospectus(models.Model):
