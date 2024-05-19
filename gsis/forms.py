@@ -243,9 +243,15 @@ class CourseForm(forms.ModelForm):
         fields = ['course_name','short_name','course_description','course_period','department']
 
 class EnrollmentForm(forms.ModelForm):
+    #updated ***
     class Meta:
         model = Enrollment
         fields = ['enrollment_description','semester','school_year']
+        widgets= {
+                'enrollment_description' : forms.Textarea(attrs={'class':'forms-control-sm', 'rows': 3, 'placeholder':'Description'}),
+                'semester': forms.Select(attrs={'class':'form-control-sm'}),
+                'school_year': forms.Select(attrs={'class':'form-control-sm'}),
+            }
 
 class RoomForm(forms.ModelForm):
     class Meta:

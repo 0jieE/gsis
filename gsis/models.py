@@ -169,9 +169,40 @@ class Course(models.Model):
 #Enrollment----------------------------------------------------------------------
     
 class Enrollment(models.Model):
+    # updated ***
+    FIRST = '1st'
+    SECOND = '2nd'
+    SUMMER = 'Summer'
+    SEMESTER = ((FIRST, '1st'), (SECOND,'2nd'), (SUMMER, 'Summer'))
+
+    SY2020 = '2020-2021'
+    SY2021 = '2021-2022'
+    SY2022 = '2022-2023'
+    SY2023 = '2023-2024'
+    SY2024 = '2024-2025'
+    SY2025 = '2025-2026'
+    SY2026 = '2026-2027'
+    SY2027 = '2027-2028'
+    SY2028 = '2028-2029'
+    SY2029 = '2029-2030'
+    SY2030 = '2030-2031'
+    SCHOOL_YEAR = (
+            (SY2020,'2020-2021'),
+            (SY2021,'2021-2022'),
+            (SY2022,'2022-2023'),
+            (SY2023,'2023-2024'),
+            (SY2024,'2024-2025'),
+            (SY2025,'2025-2026'),
+            (SY2026,'2026-2027'),
+            (SY2027,'2027-2028'),
+            (SY2028,'2028-2029'),
+            (SY2029,'2029-2030'),
+            (SY2030,'2030-2031')
+    )
+
     enrollment_description = models.CharField(max_length=50)
-    semester = models.CharField(max_length=50)
-    school_year = models.CharField(max_length=50)
+    semester = models.CharField(max_length=10, choices=SEMESTER, default=FIRST)
+    school_year = models.CharField(max_length=10, choices=SCHOOL_YEAR, default=SY2023)
 
     def __str__(self):
         template = '{0.semester} {0.school_year}'

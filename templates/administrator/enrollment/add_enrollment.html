@@ -9,14 +9,14 @@
         </button>
     </div>
     <div class="modal-body">
-        <div class="col-md-12">
-            {{form.enrollment_description|as_crispy_field}}
-        </div>
-        <div class="col-md-12">
+        <div class="form-group col-md-12">
             {{form.semester|as_crispy_field}}
         </div>
         <div class="col-md-12">
             {{form.school_year|as_crispy_field}}
+        </div>
+        <div class="col-md-12">
+            {{form.enrollment_description|as_crispy_field}}
         </div>
     </div>
     <div class="modal-footer justify-content-between">
